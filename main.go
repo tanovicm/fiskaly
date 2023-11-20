@@ -14,8 +14,8 @@ const (
 )
 
 func main() {
-
-	server := api.NewServer(ListenAddress)
+	storage := persistence.NewInMemoryStorage()
+	server := api.NewServer(ListenAddress, storage)
 
 	if err := server.Run(); err != nil {
 		log.Fatal("Could not start server on ", ListenAddress)
