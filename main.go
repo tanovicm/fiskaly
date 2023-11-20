@@ -15,7 +15,8 @@ const (
 
 func main() {
 	storage := persistence.NewInMemoryStorage()
-	server := api.NewServer(ListenAddress, storage)
+	signer := cr.NewSigner()
+	server := api.NewServer(ListenAddress, storage, signer)
 
 	if err := server.Run(); err != nil {
 		log.Fatal("Could not start server on ", ListenAddress)
